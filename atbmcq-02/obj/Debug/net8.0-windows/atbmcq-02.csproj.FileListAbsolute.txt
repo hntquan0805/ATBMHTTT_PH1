@@ -1,0 +1,67 @@
+D:\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.exe
+D:\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.deps.json
+D:\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.runtimeconfig.json
+D:\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.dll
+D:\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.pdb
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.MainForm.resources
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.GenerateResource.cache
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.GeneratedMSBuildEditorConfig.editorconfig
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.AssemblyInfoInputs.cache
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.AssemblyInfo.cs
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.CoreCompileInputs.cache
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.dll
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\refint\atbmcq-02.dll
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.pdb
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.genruntimeconfig.cache
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\ref\atbmcq-02.dll
+D:\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\Oracle.ManagedDataAccess.dll
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.AssemblyReference.cache
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.Up2Date
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Connection.resources
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Home.resources
+D:\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.User_Management.resources
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.exe
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.deps.json
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.runtimeconfig.json
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.dll
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.pdb
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\bin\Debug\net8.0-windows\Oracle.ManagedDataAccess.dll
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.AssemblyReference.cache
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Connection.resources
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Home.resources
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.MainForm.resources
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.User_Management.resources
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.GenerateResource.cache
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.GeneratedMSBuildEditorConfig.editorconfig
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.AssemblyInfoInputs.cache
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.AssemblyInfo.cs
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.CoreCompileInputs.cache
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.Up2Date
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.dll
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\refint\atbmcq-02.dll
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.pdb
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.genruntimeconfig.cache
+C:\BaitapLAPTRINH\atbmcq-02_App (1)\atbmcq-02_App\atbmcq-02\obj\Debug\net8.0-windows\ref\atbmcq-02.dll
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.exe
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.deps.json
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.runtimeconfig.json
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.dll
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\bin\Debug\net8.0-windows\atbmcq-02.pdb
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\bin\Debug\net8.0-windows\Oracle.ManagedDataAccess.dll
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.AssemblyReference.cache
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Connection.resources
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Home.resources
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.User_Management.resources
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.GenerateResource.cache
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.AssemblyInfoInputs.cache
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.AssemblyInfo.cs
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.CoreCompileInputs.cache
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.sourcelink.json
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.csproj.Up2Date
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.dll
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\refint\atbmcq-02.dll
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.pdb
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq-02.genruntimeconfig.cache
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\ref\atbmcq-02.dll
+D:\Project_Midterm\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Grant_Privileges.resources
