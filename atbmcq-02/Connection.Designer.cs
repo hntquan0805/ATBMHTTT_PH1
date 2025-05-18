@@ -169,6 +169,7 @@ namespace atbmcq_02
             lblPassword.Size = new Size(120, 29);
             lblPassword.TabIndex = 6;
             lblPassword.Text = "Password:";
+
             // 
             // txtPassword
             // 
@@ -178,6 +179,7 @@ namespace atbmcq_02
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(390, 37);
             txtPassword.TabIndex = 7;
+            txtPassword.Text = "123456";
             // 
             // lblConnType
             // 
@@ -281,6 +283,7 @@ namespace atbmcq_02
             txtServiceName.Name = "txtServiceName";
             txtServiceName.Size = new Size(782, 37);
             txtServiceName.TabIndex = 18;
+            txtServiceName.Text = "xepdb1";
             // 
             // btnConnect
             // 
