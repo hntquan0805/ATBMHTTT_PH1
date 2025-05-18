@@ -15,4 +15,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scripts\Yeuccau1\" />
+  </ItemGroup>
+
 </Project>
