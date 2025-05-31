@@ -273,19 +273,9 @@ namespace atbmcq_02
             {
                 ListViewItem item = e.Item;
                 txtGrantee.Text = item.SubItems[0].Text;
-                using (var conn = new OracleConnection(_connection.GetConnectionString()))
-                {
-                    conn.Open();
-                    using (var cmd = new OracleCommand("SELECT table_name FROM user_tables WHERE table_name = 'AUDIT_LOG'", conn))
-                    {
-                        var tableName = cmd.ExecuteScalar()?.ToString();
-                        if (!string.IsNullOrEmpty(tableName))
-                        {
-                            txtObject.Text = tableName;
-                        }
-                    }
-                }
+                txtObject.Text = item.SubItems[2].Text;
 
+                // Reset checkbox
                 chkSelect.Checked = false;
                 chkInsert.Checked = false;
                 chkDelete.Checked = false;
@@ -309,5 +299,6 @@ namespace atbmcq_02
                 }
             }
         }
+
     }
 }

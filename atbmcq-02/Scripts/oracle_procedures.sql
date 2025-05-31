@@ -8,7 +8,9 @@
 CREATE OR REPLACE PROCEDURE create_user_proc(
     p_username IN VARCHAR2,
     p_password IN VARCHAR2
-) AS
+) 
+AUTHID CURRENT_USER
+AS
 BEGIN
     -- Tạo user mới trong PDB
     EXECUTE IMMEDIATE 'CREATE USER ' || p_username || ' IDENTIFIED BY ' || p_password;
@@ -27,7 +29,9 @@ END;
 --   p_rolename: Tên role cần tạo
 CREATE OR REPLACE PROCEDURE create_role_proc(
     p_rolename IN VARCHAR2
-) AS
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
     -- Tạo role mới trong PDB
     EXECUTE IMMEDIATE 'CREATE ROLE ' || p_rolename;
@@ -46,7 +50,9 @@ END;
 --   p_username: Tên user cần xóa
 CREATE OR REPLACE PROCEDURE drop_user_proc(
     p_username IN VARCHAR2
-) AS
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
     -- Xóa user và tất cả các đối tượng liên quan
     EXECUTE IMMEDIATE 'DROP USER ' || p_username || ' CASCADE';
@@ -63,7 +69,9 @@ END;
 --   p_rolename: Tên role cần xóa
 CREATE OR REPLACE PROCEDURE drop_role_proc(
     p_rolename IN VARCHAR2
-) AS
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
     -- Xóa role
     EXECUTE IMMEDIATE 'DROP ROLE ' || p_rolename;
@@ -82,7 +90,9 @@ END;
 CREATE OR REPLACE PROCEDURE alter_user_password_proc(
     p_username IN VARCHAR2,
     p_new_password IN VARCHAR2
-) AS
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
     -- Thay đổi mật khẩu cho user
     EXECUTE IMMEDIATE 'ALTER USER ' || p_username || ' IDENTIFIED BY ' || p_new_password;
@@ -108,7 +118,9 @@ CREATE OR REPLACE PROCEDURE grant_privilege_proc (
     p_grant_insert   IN BOOLEAN DEFAULT FALSE,
     p_grant_delete   IN BOOLEAN DEFAULT FALSE,
     p_grant_update   IN BOOLEAN DEFAULT FALSE,
-) AS
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
     -- Cấp quyền SELECT nếu có
     IF p_grant_select IS NOT NULL THEN
@@ -157,28 +169,32 @@ CREATE OR REPLACE PROCEDURE revoke_privilege_proc(
     p_grant_insert   IN BOOLEAN DEFAULT FALSE,
     p_grant_delete   IN BOOLEAN DEFAULT FALSE,
     p_grant_update   IN BOOLEAN DEFAULT FALSE,
-    p_grantee IN VARCHAR2,
-    p_object_name IN VARCHAR2 DEFAULT NULL
-) AS
-    v_sql VARCHAR2(4000);
+    p_grantee        IN VARCHAR2,
+    p_object_name    IN VARCHAR2 DEFAULT NULL
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
-        IF p_grant_select THEN
-            v_sql := 'REVOKE ' || p_grant_select || ' ON ' || p_object_name || ' FROM C##' || p_grantee;
-        END IF;
+    IF p_grant_select THEN
+        EXECUTE IMMEDIATE 'REVOKE SELECT ON ' || p_object_name || ' FROM ' || p_grantee;
+        INSERT INTO audit_log VALUES (DEFAULT, USER, 'REVOKE', p_grantee, 'TABLE', 'SELECT', SYSTIMESTAMP);
+    END IF;
 
-        IF p_grant_insert THEN
-            v_sql := 'REVOKE ' || p_grant_insert || ' ON ' || p_object_name || ' FROM C##' || p_grantee;
-        END IF;
+    IF p_grant_insert THEN
+        EXECUTE IMMEDIATE 'REVOKE INSERT ON ' || p_object_name || ' FROM ' || p_grantee;
+        INSERT INTO audit_log VALUES (DEFAULT, USER, 'REVOKE', p_grantee, 'TABLE', 'INSERT', SYSTIMESTAMP);
+    END IF;
 
-        IF p_grant_delete THEN
-            v_sql := 'REVOKE ' || p_grant_delete || ' ON ' || p_object_name || ' FROM C##' || p_grantee;
-        END IF;
+    IF p_grant_delete THEN
+        EXECUTE IMMEDIATE 'REVOKE DELETE ON ' || p_object_name || ' FROM ' || p_grantee;
+        INSERT INTO audit_log VALUES (DEFAULT, USER, 'REVOKE', p_grantee, 'TABLE', 'DELETE', SYSTIMESTAMP);
+    END IF;
 
-        IF p_grant_update THEN
-            v_sql := 'REVOKE ' || p_grant_update || ' ON ' || p_object_name || ' FROM C##' || p_grantee;
-        END IF;
-    
-    EXECUTE IMMEDIATE v_sql;
+    IF p_grant_update THEN
+        EXECUTE IMMEDIATE 'REVOKE UPDATE ON ' || p_object_name || ' FROM ' || p_grantee;
+        INSERT INTO audit_log VALUES (DEFAULT, USER, 'REVOKE', p_grantee, 'TABLE', 'UPDATE', SYSTIMESTAMP);
+    END IF;
+
     COMMIT;
 EXCEPTION
     WHEN OTHERS THEN
@@ -188,11 +204,13 @@ END;
 /
 
 
--- 11. Procedure lấy danh sách users và roles
+-- 8. Procedure lấy danh sách users và roles
 CREATE OR REPLACE PROCEDURE get_users_roles_list(
     p_filter IN VARCHAR2,
     p_cursor OUT SYS_REFCURSOR
-) AS
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
     IF p_filter = 'Users' THEN
         OPEN p_cursor FOR
@@ -236,15 +254,21 @@ BEGIN
 END;
 /
 
--- 12. Procedure lấy danh sách quyền
+-- 9. Procedure lấy danh sách quyền
 CREATE OR REPLACE PROCEDURE get_privileges_list(
     p_cursor OUT SYS_REFCURSOR
-) AS
+)
+AUTHID CURRENT_USER
+AS
 BEGIN
     OPEN p_cursor FOR
         SELECT grantee, privilege, table_name, 
-               CASE WHEN grantable = 'YES' THEN 'Có thể cấp' ELSE 'Không thể cấp' END as grantable
-        FROM dba_tab_privs 
+               CASE 
+                   WHEN grantable = 'YES' THEN 'Có thể cấp' 
+                   ELSE 'Không thể cấp' 
+               END AS grantable
+        FROM dba_tab_privs
+        WHERE table_name IN ('NHANVIEN', 'DANGKY', 'MOMON', 'SINHVIEN', 'HOCPHAN', 'DONVI')
         ORDER BY grantee, privilege;
 END;
 /
