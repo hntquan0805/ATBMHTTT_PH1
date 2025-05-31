@@ -28,6 +28,9 @@ namespace atbmcq_02
             // Thêm event handler cho TextBox tìm kiếm
             txtSearch.TextChanged += TxtSearch_TextChanged;
             
+            // Thêm event handler cho nút Refresh
+            btnRefresh.Click += LoadUserList;
+            
             // Gọi ngay lập tức để thiết lập UI ban đầu
             RadioButton_CheckedChanged(null, null);
         }
