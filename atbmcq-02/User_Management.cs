@@ -20,6 +20,33 @@ namespace atbmcq_02
         {
             InitializeComponent();
             _connection = _connect;
+            
+            // Thêm event handler cho RadioButton
+            radUser.CheckedChanged += RadioButton_CheckedChanged;
+            radRole.CheckedChanged += RadioButton_CheckedChanged;
+            
+            // Thêm event handler cho TextBox tìm kiếm
+            txtSearch.TextChanged += TxtSearch_TextChanged;
+            
+            // Gọi ngay lập tức để thiết lập UI ban đầu
+            RadioButton_CheckedChanged(null, null);
+        }
+        
+        private void TxtSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Gọi hàm tải danh sách để lọc theo từ khóa tìm kiếm
+            LoadUserList(sender, e);
+        }
+        
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            // Hiển thị/ẩn trường mật khẩu và nút Update dựa trên selection
+            bool isUser = radUser.Checked;
+            
+            lblUserPass.Visible = isUser;
+            txtUserPass.Visible = isUser;
+            btnUpdate.Visible = isUser;
+            chkExisting.Visible = false; // Luôn ẩn checkbox Existing User
         }
 
         private void CreateUserOrRole(object sender, EventArgs e)
@@ -135,9 +162,22 @@ namespace atbmcq_02
 
                 lstUsers.Items.Clear();
                 using var reader = cmd.ExecuteReader();
+                
+                // Lấy từ khóa tìm kiếm (nếu có)
+                string searchKeyword = txtSearch.Text.Trim().ToLower();
+                
                 while (reader.Read())
                 {
-                    var item = new ListViewItem(reader["name"].ToString());
+                    string name = reader["name"].ToString();
+                    
+                    // Nếu có từ khóa tìm kiếm và tên không chứa từ khóa thì bỏ qua
+                    if (!string.IsNullOrEmpty(searchKeyword) && 
+                        !name.ToLower().Contains(searchKeyword))
+                    {
+                        continue;
+                    }
+                    
+                    var item = new ListViewItem(name);
                     item.SubItems.Add(reader["type"].ToString());
                     item.SubItems.Add(reader["status"]?.ToString() ?? "N/A");
                     item.SubItems.Add(reader["created"]?.ToString() ?? "N/A");
@@ -159,9 +199,9 @@ namespace atbmcq_02
             }
 
             // Kiểm tra mật khẩu chỉ khi tạo user mới
-            if (radUser.Checked && !chkExisting.Checked && string.IsNullOrWhiteSpace(txtUserPass.Text))
+            if (radUser.Checked && string.IsNullOrWhiteSpace(txtUserPass.Text))
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu cho user mới!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập mật khẩu cho user!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -174,154 +214,6 @@ namespace atbmcq_02
             }
 
             return true;
-        }
-
-        private void CreateTablespace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtTablespace.Text) || string.IsNullOrWhiteSpace(txtSize.Text))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            try
-            {
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                string tablespace = txtTablespace.Text.Trim();
-                int size = int.Parse(txtSize.Text);
-
-                using var cmd = new OracleCommand("create_tablespace_proc", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("p_tablespace_name", OracleDbType.Varchar2).Value = tablespace;
-                cmd.Parameters.Add("p_size", OracleDbType.Int32).Value = size;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Tạo tablespace thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadTablespaces(sender, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void DropTablespace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtTablespace.Text))
-            {
-                MessageBox.Show("Vui lòng nhập tên tablespace!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            try
-            {
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                string tablespace = txtTablespace.Text.Trim();
-
-                using var cmd = new OracleCommand("drop_tablespace_proc", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("p_tablespace_name", OracleDbType.Varchar2).Value = tablespace;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Xóa tablespace thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadTablespaces(sender, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ResizeTablespace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtTablespace.Text) || string.IsNullOrWhiteSpace(txtSize.Text))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            try
-            {
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                string tablespace = txtTablespace.Text.Trim();
-                int size = int.Parse(txtSize.Text);
-
-                using var cmd = new OracleCommand("resize_tablespace_proc", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("p_tablespace_name", OracleDbType.Varchar2).Value = tablespace;
-                cmd.Parameters.Add("p_size", OracleDbType.Int32).Value = size;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Thay đổi kích thước tablespace thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadTablespaces(sender, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void LoadTablespaces(object sender, EventArgs e)
-        {
-            try
-            {
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                using var cmd = new OracleCommand("get_tablespaces_list", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
-                lstTablespaces.Items.Clear();
-                using var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    var item = new ListViewItem(reader["tablespace_name"].ToString());
-                    item.SubItems.Add(reader["size_mb"].ToString());
-                    item.SubItems.Add(reader["status"].ToString());
-                    item.SubItems.Add(reader["autoextensible"].ToString());
-                    lstTablespaces.Items.Add(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void LoadAuditLog(object sender, EventArgs e)
-        {
-            try
-            {
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                using var cmd = new OracleCommand("get_audit_log_list", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
-                lstAudit.Items.Clear();
-                using var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    var item = new ListViewItem(reader["timestamp"].ToString());
-                    item.SubItems.Add(reader["username"].ToString());
-                    item.SubItems.Add(reader["action_name"].ToString());
-                    item.SubItems.Add(reader["obj_name"].ToString());
-                    item.SubItems.Add(reader["status"].ToString());
-                    lstAudit.Items.Add(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }

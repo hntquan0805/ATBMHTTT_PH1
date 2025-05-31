@@ -51,45 +51,18 @@ namespace atbmcq_02
             TrangThai = new ColumnHeader();
             NgayTao = new ColumnHeader();
             btnRefresh = new Button();
-            tabTablespaces = new TabPage();
-            grpTablespaces = new GroupBox();
-            lblTablespace = new Label();
-            txtTablespace = new TextBox();
-            lblSize = new Label();
-            txtSize = new TextBox();
-            btnCreateTS = new Button();
-            btnDropTS = new Button();
-            btnResizeTS = new Button();
-            lstTablespaces = new ListView();
-            TBSTen = new ColumnHeader();
-            KichThuoc = new ColumnHeader();
-            TBSTrangThai = new ColumnHeader();
-            TBSTDMR = new ColumnHeader();
-            tabAudit = new TabPage();
-            grpAudit = new GroupBox();
-            lstAudit = new ListView();
-            ThoiGian = new ColumnHeader();
-            User = new ColumnHeader();
-            HanhDong = new ColumnHeader();
-            TDDoiTuong = new ColumnHeader();
-            TDTrangThai = new ColumnHeader();
-            btnRefreshAudit = new Button();
+            txtSearch = new TextBox();
+            lblSearch = new Label();
             tabControl.SuspendLayout();
             tabManage.SuspendLayout();
             grpUserRole.SuspendLayout();
             tabList.SuspendLayout();
-            tabTablespaces.SuspendLayout();
-            grpTablespaces.SuspendLayout();
-            tabAudit.SuspendLayout();
-            grpAudit.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl
             // 
             tabControl.Controls.Add(tabManage);
             tabControl.Controls.Add(tabList);
-            tabControl.Controls.Add(tabTablespaces);
-            tabControl.Controls.Add(tabAudit);
             tabControl.Dock = DockStyle.Fill;
             tabControl.Location = new Point(0, 0);
             tabControl.Margin = new Padding(6, 3, 6, 3);
@@ -198,6 +171,7 @@ namespace atbmcq_02
             chkExisting.Size = new Size(202, 33);
             chkExisting.TabIndex = 6;
             chkExisting.Text = "Existing User?";
+            chkExisting.Visible = false;
             // 
             // btnCreate
             // 
@@ -234,6 +208,8 @@ namespace atbmcq_02
             tabList.Controls.Add(cboFilter);
             tabList.Controls.Add(lstUsers);
             tabList.Controls.Add(btnRefresh);
+            tabList.Controls.Add(txtSearch);
+            tabList.Controls.Add(lblSearch);
             tabList.Location = new Point(4, 34);
             tabList.Margin = new Padding(6, 3, 6, 3);
             tabList.Name = "tabList";
@@ -250,7 +226,7 @@ namespace atbmcq_02
             cboFilter.Location = new Point(20, 14);
             cboFilter.Margin = new Padding(6, 3, 6, 3);
             cboFilter.Name = "cboFilter";
-            cboFilter.Size = new Size(388, 37);
+            cboFilter.Size = new Size(200, 37);
             cboFilter.TabIndex = 0;
             // 
             // lstUsers
@@ -296,208 +272,21 @@ namespace atbmcq_02
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "Refresh List";
             // 
-            // tabTablespaces
+            // txtSearch
             // 
-            tabTablespaces.Controls.Add(grpTablespaces);
-            tabTablespaces.Location = new Point(4, 34);
-            tabTablespaces.Margin = new Padding(6, 3, 6, 3);
-            tabTablespaces.Name = "tabTablespaces";
-            tabTablespaces.Size = new Size(1584, 497);
-            tabTablespaces.TabIndex = 3;
-            tabTablespaces.Text = "Tablespace Management";
+            txtSearch.Location = new Point(360, 14);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(400, 37);
+            txtSearch.TabIndex = 4;
             // 
-            // grpTablespaces
+            // lblSearch
             // 
-            grpTablespaces.Controls.Add(lblTablespace);
-            grpTablespaces.Controls.Add(txtTablespace);
-            grpTablespaces.Controls.Add(lblSize);
-            grpTablespaces.Controls.Add(txtSize);
-            grpTablespaces.Controls.Add(btnCreateTS);
-            grpTablespaces.Controls.Add(btnDropTS);
-            grpTablespaces.Controls.Add(btnResizeTS);
-            grpTablespaces.Controls.Add(lstTablespaces);
-            grpTablespaces.Location = new Point(20, 14);
-            grpTablespaces.Margin = new Padding(6, 3, 6, 3);
-            grpTablespaces.Name = "grpTablespaces";
-            grpTablespaces.Padding = new Padding(6, 3, 6, 3);
-            grpTablespaces.Size = new Size(1547, 454);
-            grpTablespaces.TabIndex = 0;
-            grpTablespaces.TabStop = false;
-            grpTablespaces.Text = "Tablespace Management";
-            // 
-            // lblTablespace
-            // 
-            lblTablespace.AutoSize = true;
-            lblTablespace.Location = new Point(41, 48);
-            lblTablespace.Margin = new Padding(6, 0, 6, 0);
-            lblTablespace.Name = "lblTablespace";
-            lblTablespace.Size = new Size(183, 29);
-            lblTablespace.TabIndex = 0;
-            lblTablespace.Text = "Tablespace Name:";
-            // 
-            // txtTablespace
-            // 
-            txtTablespace.Location = new Point(344, 44);
-            txtTablespace.Margin = new Padding(6, 3, 6, 3);
-            txtTablespace.Name = "txtTablespace";
-            txtTablespace.Size = new Size(388, 37);
-            txtTablespace.TabIndex = 1;
-            // 
-            // lblSize
-            // 
-            lblSize.AutoSize = true;
-            lblSize.Location = new Point(41, 101);
-            lblSize.Margin = new Padding(6, 0, 6, 0);
-            lblSize.Name = "lblSize";
-            lblSize.Size = new Size(202, 29);
-            lblSize.TabIndex = 2;
-            lblSize.Text = "Size (MB):";
-            // 
-            // txtSize
-            // 
-            txtSize.Location = new Point(344, 97);
-            txtSize.Margin = new Padding(6, 3, 6, 3);
-            txtSize.Name = "txtSize";
-            txtSize.Size = new Size(192, 37);
-            txtSize.TabIndex = 3;
-            // 
-            // btnCreateTS
-            // 
-            btnCreateTS.AutoSize = true;
-            btnCreateTS.Location = new Point(785, 44);
-            btnCreateTS.Margin = new Padding(6, 3, 6, 3);
-            btnCreateTS.Name = "btnCreateTS";
-            btnCreateTS.Size = new Size(196, 45);
-            btnCreateTS.TabIndex = 4;
-            btnCreateTS.Text = "Create";
-            // 
-            // btnDropTS
-            // 
-            btnDropTS.AutoSize = true;
-            btnDropTS.Location = new Point(785, 97);
-            btnDropTS.Margin = new Padding(6, 3, 6, 3);
-            btnDropTS.Name = "btnDropTS";
-            btnDropTS.Size = new Size(196, 45);
-            btnDropTS.TabIndex = 5;
-            btnDropTS.Text = "Drop";
-            // 
-            // btnResizeTS
-            // 
-            btnResizeTS.AutoSize = true;
-            btnResizeTS.Location = new Point(1037, 48);
-            btnResizeTS.Margin = new Padding(6, 3, 6, 3);
-            btnResizeTS.Name = "btnResizeTS";
-            btnResizeTS.Size = new Size(329, 45);
-            btnResizeTS.TabIndex = 6;
-            btnResizeTS.Text = "Resize";
-            // 
-            // lstTablespaces
-            // 
-            lstTablespaces.Columns.AddRange(new ColumnHeader[] { TBSTen, KichThuoc, TBSTrangThai, TBSTDMR });
-            lstTablespaces.Location = new Point(39, 161);
-            lstTablespaces.Margin = new Padding(6, 3, 6, 3);
-            lstTablespaces.Name = "lstTablespaces";
-            lstTablespaces.Size = new Size(1468, 274);
-            lstTablespaces.TabIndex = 7;
-            lstTablespaces.UseCompatibleStateImageBehavior = false;
-            lstTablespaces.View = View.Details;
-            // 
-            // TBSTen
-            // 
-            TBSTen.Text = "Name";
-            TBSTen.Width = 367;
-            // 
-            // KichThuoc
-            // 
-            KichThuoc.Text = "Size (MB)";
-            KichThuoc.Width = 367;
-            // 
-            // TBSTrangThai
-            // 
-            TBSTrangThai.Text = "Status";
-            TBSTrangThai.Width = 367;
-            // 
-            // TBSTDMR
-            // 
-            TBSTDMR.Text = "Auto Extend";
-            TBSTDMR.Width = 367;
-            // 
-            // tabAudit
-            // 
-            tabAudit.Controls.Add(grpAudit);
-            tabAudit.Location = new Point(4, 34);
-            tabAudit.Margin = new Padding(6, 3, 6, 3);
-            tabAudit.Name = "tabAudit";
-            tabAudit.Size = new Size(1584, 497);
-            tabAudit.TabIndex = 4;
-            tabAudit.Text = "Activity Log";
-            // 
-            // grpAudit
-            // 
-            grpAudit.Controls.Add(lstAudit);
-            grpAudit.Controls.Add(btnRefreshAudit);
-            grpAudit.Location = new Point(20, 14);
-            grpAudit.Margin = new Padding(6, 3, 6, 3);
-            grpAudit.Name = "grpAudit";
-            grpAudit.Padding = new Padding(6, 3, 6, 3);
-            grpAudit.Size = new Size(1544, 455);
-            grpAudit.TabIndex = 0;
-            grpAudit.TabStop = false;
-            grpAudit.Text = "Activity Log";
-            // 
-            // lstAudit
-            // 
-            lstAudit.Columns.AddRange(new ColumnHeader[] { ThoiGian, User, HanhDong, TDDoiTuong, TDTrangThai });
-            lstAudit.Location = new Point(39, 41);
-            lstAudit.Margin = new Padding(6, 3, 6, 3);
-            lstAudit.Name = "lstAudit";
-            lstAudit.Size = new Size(1470, 391);
-            lstAudit.TabIndex = 0;
-            lstAudit.UseCompatibleStateImageBehavior = false;
-            lstAudit.View = View.Details;
-            // 
-            // ThoiGian
-            // 
-            ThoiGian.Text = "Time";
-            ThoiGian.Width = 294;
-            // 
-            // User
-            // 
-            User.Text = "User";
-            User.Width = 294;
-            // 
-            // HanhDong
-            // 
-            HanhDong.Text = "Action";
-            HanhDong.Width = 294;
-            // 
-            // TDDoiTuong
-            // 
-            TDDoiTuong.Text = "Object";
-            TDDoiTuong.Width = 294;
-            // 
-            // TDTrangThai
-            // 
-            TDTrangThai.Text = "Status";
-            TDTrangThai.Width = 294;
-            // 
-            // btnRefreshAudit
-            // 
-            btnRefreshAudit.Location = new Point(1254, 41);
-            btnRefreshAudit.Margin = new Padding(6, 3, 6, 3);
-            btnRefreshAudit.Name = "btnRefreshAudit";
-            btnRefreshAudit.Size = new Size(137, 41);
-            btnRefreshAudit.TabIndex = 1;
-            btnRefreshAudit.Text = "Refresh";
-            btnCreate.Click += CreateUserOrRole;
-            btnDelete.Click += DeleteUserOrRole;
-            btnUpdate.Click += UpdateUserOrRole;
-            btnRefresh.Click += LoadUserList;
-            cboFilter.SelectedIndexChanged += LoadUserList;
-            //chkExisting.CheckedChanged += txtUserPass.Enabled = !chkExisting.Checked;
-            btnCreateTS.Click += CreateTablespace;
-            btnDropTS.Click += DropTablespace;
-            btnResizeTS.Click += ResizeTablespace;
+            lblSearch.AutoSize = true;
+            lblSearch.Location = new Point(240, 18);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(108, 29);
+            lblSearch.TabIndex = 3;
+            lblSearch.Text = "Tìm kiếm";
             // 
             // User_Management
             // 
@@ -514,11 +303,6 @@ namespace atbmcq_02
             grpUserRole.PerformLayout();
             tabList.ResumeLayout(false);
             tabList.PerformLayout();
-            tabTablespaces.ResumeLayout(false);
-            grpTablespaces.ResumeLayout(false);
-            grpTablespaces.PerformLayout();
-            tabAudit.ResumeLayout(false);
-            grpAudit.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -546,28 +330,7 @@ namespace atbmcq_02
         private ColumnHeader TrangThai;
         private ColumnHeader NgayTao;
         private Button btnRefresh;
-        private TabPage tabTablespaces;
-        private GroupBox grpTablespaces;
-        private Label lblTablespace;
-        private TextBox txtTablespace;
-        private Label lblSize;
-        private TextBox txtSize;
-        private Button btnCreateTS;
-        private Button btnDropTS;
-        private Button btnResizeTS;
-        private ListView lstTablespaces;
-        private ColumnHeader TBSTen;
-        private ColumnHeader KichThuoc;
-        private ColumnHeader TBSTrangThai;
-        private ColumnHeader TBSTDMR;
-        private TabPage tabAudit;
-        private GroupBox grpAudit;
-        private ListView lstAudit;
-        private ColumnHeader ThoiGian;
-        private ColumnHeader User;
-        private ColumnHeader HanhDong;
-        private ColumnHeader TDDoiTuong;
-        private ColumnHeader TDTrangThai;
-        private Button btnRefreshAudit;
+        private TextBox txtSearch;
+        private Label lblSearch;
     }
 }
