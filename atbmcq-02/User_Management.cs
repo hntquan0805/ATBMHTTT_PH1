@@ -31,6 +31,11 @@ namespace atbmcq_02
             // Thêm event handler cho nút Refresh
             btnRefresh.Click += LoadUserList;
             
+            // Thêm event handler cho các nút quản lý user/role
+            btnCreate.Click += CreateUserOrRole;
+            btnDelete.Click += DeleteUserOrRole;
+            btnUpdate.Click += UpdateUserOrRole;
+            
             // Gọi ngay lập tức để thiết lập UI ban đầu
             RadioButton_CheckedChanged(null, null);
         }
